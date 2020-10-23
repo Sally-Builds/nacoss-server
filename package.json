@@ -1,7 +1,7 @@
 {
-  "name": "blog",
+  "name": "nacoss",
   "version": "1.0.0",
-  "description": "A simple blog api",
+  "description": "Nacoss caritas payments website",
   "main": "app.js",
   "scripts": {
     "start": "node server.js",
@@ -15,6 +15,7 @@
     "@sendgrid/mail": "^7.3.0",
     "axios": "^0.20.0",
     "bcrypt": "^4.0.1",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -42,6 +43,6 @@
     "prettier": "^2.0.5"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": "^12"
   }
 }

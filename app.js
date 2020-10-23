@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const userRouter = require('./routes/userRoutes');
 const dueRouter = require('./routes/dueRoutes');
 const paymentRouter = require('./routes/paymentRoutes');
@@ -16,7 +17,7 @@ app.enable('trust proxy');
 // app.set('views', path.join(__dirname, 'views'));
 
 //middleware
-//1) Global middleware
+// 1) Global middleware
 app.use(
   cors({
     credentials: true,
@@ -28,6 +29,9 @@ app.options('*', cors());
 //body parser, reading data from body into req.body
 app.use(express.json());
 app.use(cookieParser());
+
+//compress responses and request
+app.use(compression());
 
 //testing middleware
 app.use((req, res, next) => {
@@ -46,6 +50,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(`${__dirname}/public/`));
   app.get(/.*/, (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 }
+
+// app.all('*', (req, res, next) => {
+//   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+// });
 
 app.use(globalErrorHandler);
 
