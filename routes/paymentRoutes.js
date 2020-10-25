@@ -8,7 +8,7 @@ router.use(authController.protect);
 
 router.post(
   '/makepayments',
-  authController.restrictTo('user'),
+  // authController.restrictTo('user'),
   paymentController.makePayment
 );
 router

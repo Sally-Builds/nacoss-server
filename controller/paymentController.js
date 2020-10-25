@@ -16,7 +16,12 @@ exports.makePayment = async (req, res, next) => {
       tx_ref: Date.now(),
       amount: due.amount,
       currency: 'NGN',
-      redirect_url: `${req.protocol}://${req.get('host')}`,
+      redirect_url: `${req.protocol}://${req.get('host')}/#/${
+        req.user.role === 'admin' ? 'dashboard/admin' : 'dashboard'
+      }`,
+      // redirect_url: `${req.protocol}://localhost:8080/#/${
+      //   req.user.role === 'admin' ? 'dashboard/admin' : 'dashboard'
+      // }`,
       payment_options: 'card',
       customer: {
         email: req.user.email,
